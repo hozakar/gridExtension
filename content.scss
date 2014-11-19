@@ -1,14 +1,21 @@
+$hor: #37bf30;
+$ver: #AA82FF;
+$ver-edge: magenta;
+$hover: #00ffd5;
+
+
 #grid_builder_toggle_button {
 	position: fixed;
-	top: 0;
-	right: 0;
-	width: 60px;
-	height: 60px;
+	top: 12px;
+	right: 12px;
+	width: 36px;
+	height: 36px;
 	z-index: 999999;
-	opacity: .2;
+	opacity: .4;
 	background-color: red;
 	transition: all .4s;
 	cursor: pointer;
+	border-radius: 50%;
 
 	&:hover {
 		opacity: 1;
@@ -20,17 +27,31 @@
 		position: absolute;
 		left: 0;
 		right: 0;
-		height: 1px;
+		height: 3px;
 		z-index: 999998;
-		background-color: red;
+		border-top: 1px solid $hor;
+		background-color: transparent;
+
+		&:hover {
+			border-top-color: $hover;
+		}
 	}
 
 	&.grid_vertical {
 		position: fixed;
 		top: 0;
 		bottom: 0;
-		width: 1px;
+		width: 3px;
 		z-index: 999998;
-		background-color: red;
+		border-left: 1px solid $ver;
+		background-color: transparent;
+		
+		&.first, &:last-child {
+			border-left-color: $ver-edge;
+		}
+
+		&:hover {
+			border-left-color: $hover;
+		}
 	}
 }

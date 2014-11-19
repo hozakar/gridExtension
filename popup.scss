@@ -3,25 +3,42 @@
 }
 
 body {
-	padding: 12px;
+	padding: 12px 12px 3px 12px;
 	margin: 0;
-	width: 300px;
+	width: 252px;
 	font-family: sans-serif;
 	font-size: 75%;
+	color: #888;
+}
+
+h1 {
+	font-size: 2em;
+	font-weight: normal;
+	color: #444;
+	text-align: left;
+	display: block;
+	padding: 0;
+	margin: 0;
 }
 
 label {
 	display: block;
 	width: 100%;
-	text-align: right;
+	text-align: left;
+	margin: 6px 0;
+	overflow: hidden;
 
 	span {
+		float: left;
 		display: inline-block;
 		font-weight: bold;
-		margin-right: 12px;
+		margin-right: 0;
+		padding-top: 4px;
+		width: 144px;
 	}
 
 	input, select {
+		float: left;
 		width: 84px;
 		padding: 4px 8px;
 		border: 1px solid #ddd;
@@ -29,19 +46,52 @@ label {
 	}
 
 	select {
-		width: 240px;
+		width: 228px;
+		margin-bottom: 12px;
 	}
+}
+
+.btn-container {
+	display: inline-block;
+	float: left;
+	margin: 9px 0;
+	width: 50%;
+	text-align: left;
+	padding-top: 6px;
+
+	&.right { text-align: right; padding-top: 0; }
 
 	button {
-		width: 84px;
+		display: inline-block;
+		min-width: 84px;
 		text-align: center;
 		font-weight: bold;
-		padding: 6px 0;
+		padding: 6px;
 		border-radius: 4px;
 		background-color: #2693FF;
 		color: #fcfcfc;
 		border: none;
+		outline: none;
 		box-shadow: none;
-		margin-top: 6px;
+		cursor: pointer;
+
+		&.disable, &.enable {
+			font-weight: normal;
+			font-size: 75%;
+			min-width: 36px;
+			opacity: .3;
+
+			&.selected { opacity: 1; }
+		}
+
+		&.disable {
+			border-radius: 4px 0 0 4px;;
+			background-color: orange;
+			border-right: 1px solid #ccc;
+		}
+		&.enable {
+			border-radius: 0 4px 4px 0;
+			background-color: green;
+		}
 	}
 }

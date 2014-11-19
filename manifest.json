@@ -2,14 +2,18 @@
 	"manifest_version": 2,
 
 	"name": "Grid Builder",
-	"description": "This extension apllies a grid to current web page.",
+	"description": "This extension applies a grid to current web page.",
 	"version": "1.0",
 
 	"browser_action": {
-	"default_icon": "icon.png",
-	"default_popup": "popup.html"
+		"default_icon": "icon-disabled-16.png",
+		"default_popup": "popup.html"
 	},
 
+	"background": {
+	    "page": "popup.html"
+	},
+	
 	"content_scripts": [
 		{
 		  "matches": ["*://*/*"],
@@ -17,6 +21,10 @@
 		  "js": ["jquery-2.1.1.min.js", "content.min.js"]
 		}
 	],
+
+	"icons": { "16": "icon16.png",
+	           "48": "icon48.png",
+	          "128": "icon128.png" },
 
 	"permissions": [
 		"storage"

@@ -5,6 +5,7 @@
 		<link rel="stylesheet" href="popup.min.css">
 	</head>
 	<body>
+		<h1>Grid Builder</h1>
 		<label>
 			<select id="defaults">
 				<option value="">Select from the defaults</option>
@@ -20,31 +21,46 @@
 			<input type="text" id="page_width" value="1170" />
 		</label>
 
+		<div class="clear"></div>
+
 		<label>
 			<span>Columns:</span>
 			<input type="text" id="columns" value="12" />
 		</label>
+
+		<div class="clear"></div>
 
 		<label>
 			<span>Gutter Width:</span>
 			<input type="text" id="gutter" value="30" />
 		</label>
 
+		<div class="clear"></div>
+
 		<label>
 			<span>Top Margin:</span>
 			<input type="text" id="top_margin" value="0" />
 		</label>
+
+		<div class="clear"></div>
 
 		<label>
 			<span>Line Height:</span>
 			<input type="text" id="line_height" value="24" />
 		</label>
 
-		<label>
-			<button id="submit">SUBMIT</button>
-		</label>
+		<div class="clear"></div>
 
-		<script type="text/javascript" src="popup.min.js"></script>
+		<div class="btn-container">
+			<input type="hidden" id="disabled" value="0" />
+			<button class="disable">Disabled</button><button class="enable">Enabled</button>
+		</div>
+
+		<div class="btn-container right">
+			<button id="submit">SUBMIT</button>
+		</div>
+
 		<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="popup.min.js"></script>
 	</body>
 </html>
