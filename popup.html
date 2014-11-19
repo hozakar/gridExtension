@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Grid Builder</title>
+		<link rel="stylesheet" href="popup.min.css">
+	</head>
+	<body>
+		<label>
+			<select id="defaults">
+				<option value="">Select from the defaults</option>
+				<option value="bs_lg">Bootstrap Large</option>
+				<option value="bs_md">Bootstrap Medium</option>
+				<option value="bs_sm">Bootstrap Small</option>
+				<option value="bs_xs">Bootstrap XSmall</option>
+			</select>
+		</label>
+
+		<label>
+			<span>Page Width:</span>
+			<input type="text" id="page_width" value="1170" />
+		</label>
+
+		<label>
+			<span>Columns:</span>
+			<input type="text" id="columns" value="12" />
+		</label>
+
+		<label>
+			<span>Gutter Width:</span>
+			<input type="text" id="gutter" value="30" />
+		</label>
+
+		<label>
+			<span>Top Margin:</span>
+			<input type="text" id="top_margin" value="0" />
+		</label>
+
+		<label>
+			<span>Line Height:</span>
+			<input type="text" id="line_height" value="24" />
+		</label>
+
+		<label>
+			<button id="submit">SUBMIT</button>
+		</label>
+
+		<script type="text/javascript" src="popup.min.js"></script>
+		<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+	</body>
+</html>
