@@ -1,10 +1,13 @@
-$hor: #37bf30;
-$ver: #AA82FF;
-$ver-edge: magenta;
-$hover: #00ffd5;
-
+@import "variables";
 
 #grid_builder_toggle_button {
+	font-family: sans-serif;
+	font-size: 12px;
+	text-indent: -1px;
+	font-weight: bold;
+	color: #fff;
+	line-height: 36px;
+	text-align: center;
 	position: fixed;
 	top: 12px;
 	right: 12px;
@@ -12,17 +15,23 @@ $hover: #00ffd5;
 	height: 36px;
 	z-index: 999999;
 	opacity: .4;
-	background-color: red;
+	background-color: $switchon;
 	transition: all .4s;
 	cursor: pointer;
 	border-radius: 50%;
 
+	&.off {
+		background-color: $switchoff;
+	}
+	
 	&:hover {
 		opacity: 1;
 	}
 }
 
 .grid_builder {
+	box-sizing: border-box;
+	
 	&.grid_horizontal {
 		position: absolute;
 		left: 0;

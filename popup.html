@@ -2,63 +2,108 @@
 <html>
 	<head>
 		<title>Grid Builder</title>
+		<link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="popup.min.css">
 	</head>
 	<body>
 		<h1>Grid Builder</h1>
-		<label>
-			<select id="defaults">
-				<option value="">Select from the defaults</option>
-				<option value="bs_lg">Bootstrap Large</option>
-				<option value="bs_md">Bootstrap Medium</option>
-				<option value="bs_sm">Bootstrap Small</option>
-				<option value="bs_xs">Bootstrap XSmall</option>
-			</select>
-		</label>
+		<div class="container">
 
-		<label>
-			<span>Page Width:</span>
-			<input type="text" id="page_width" value="1170" />
-		</label>
+			<label class="bsdef">
+				<input type="hidden" id="manual" value="0" />
+				<div class="switch manualswitch">
+					<div class="switch-bg"></div>
+					<div class="btn"></div>
+				</div>
+				<span class="manual_cap">Use Bootstrap Defaults</span>
+			</label>
 
-		<div class="clear"></div>
+			<div class="clear sep"></div>
 
-		<label>
-			<span>Columns:</span>
-			<input type="text" id="columns" value="12" />
-		</label>
+			<div class="bsdef_table">
+				<table>
+					<thead>
+						<tr>
+							<th></th>
+							<td>Top Margin</td>
+							<td>Line Height</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Large</td>
+							<td><input type="text" id="lg_top_margin" value="0" /></td>
+							<td><input type="text" id="lg_line_height" value="24" /></td>
+						</tr>
+						<tr>
+							<td>Medium</td>
+							<td><input type="text" id="md_top_margin" value="0" /></td>
+							<td><input type="text" id="md_line_height" value="24" /></td>
+						</tr>
+						<tr>
+							<td>Small</td>
+							<td><input type="text" id="sm_top_margin" value="0" /></td>
+							<td><input type="text" id="sm_line_height" value="24" /></td>
+						</tr>
+						<tr>
+							<td>X-Small</td>
+							<td><input type="text" id="xs_top_margin" value="0" /></td>
+							<td><input type="text" id="xs_line_height" value="24" /></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 
-		<div class="clear"></div>
+			<div class="man_table">
+				<table>
+					<thead>
+						<tr>
+							<th></th>
+							<td>Values</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Page Width</td>
+							<td><input type="text" id="page_width" value="1140" /></td>
+						</tr>
+						<tr>
+							<td>Columns</td>
+							<td><input type="text" id="columns" value="12" /></td>
+						</tr>
+						<tr>
+							<td>Gutter Width</td>
+							<td><input type="text" id="gutter" value="30" /></td>
+						</tr>
+						<tr>
+							<td>Top Margin</td>
+							<td><input type="text" id="top_margin" value="0" /></td>
+						</tr>
+						<tr>
+							<td>Line Height</td>
+							<td><input type="text" id="line_height" value="24" /></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 
-		<label>
-			<span>Gutter Width:</span>
-			<input type="text" id="gutter" value="30" />
-		</label>
+		</div>
 
-		<div class="clear"></div>
-
-		<label>
-			<span>Top Margin:</span>
-			<input type="text" id="top_margin" value="0" />
-		</label>
-
-		<div class="clear"></div>
-
-		<label>
-			<span>Line Height:</span>
-			<input type="text" id="line_height" value="24" />
-		</label>
-
-		<div class="clear"></div>
 
 		<div class="btn-container">
 			<input type="hidden" id="disabled" value="0" />
-			<button class="disable">Disabled</button><button class="enable">Enabled</button>
+			<div class="switch onoffswitch">
+				<div class="switch-bg"></div>
+				<div class="btn"></div>
+			</div>
+			<span class="onoff_cap">ON</span>
 		</div>
 
 		<div class="btn-container right">
-			<button id="submit">SUBMIT</button>
+			<button id="submit">SAVE</button>
 		</div>
+
+		<div class="clear"></div>
 
 		<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="popup.min.js"></script>

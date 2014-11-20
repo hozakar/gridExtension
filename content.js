@@ -1,13 +1,44 @@
 (function($) {
 	"use strict";
+
 	var defaults = {
-		defaults	: 'bs_lg',
-		pageWidth	: 1170,
-		columns		: 12,
-		gutter		: 30,
-		topMargin	: 0,
-		lineHeight	: 24,
-		disabled	: 0
+		'bs_lg' : {
+			pageWidth	: 1140,
+			columns		: 12,
+			gutter		: 30,
+			topMargin	: 0,
+			lineHeight	: 24
+		},
+		'bs_md' : {
+			pageWidth	: 940,
+			columns		: 12,
+			gutter		: 30,
+			topMargin	: 0,
+			lineHeight	: 24
+		},
+		'bs_sm' : {
+			pageWidth	: 720,
+			columns		: 12,
+			gutter		: 30,
+			topMargin	: 0,
+			lineHeight	: 24
+		},
+		'bs_xs' : {
+			pageWidth	: 0,
+			columns		: 12,
+			gutter		: 30,
+			topMargin	: 0,
+			lineHeight	: 24
+		},
+		'manual': {
+			pageWidth	: 1140,
+			columns		: 12,
+			gutter		: 30,
+			topMargin	: 0,
+			lineHeight	: 24
+		},
+		'disabled'	: 0,
+		'usemanual'	: 0
 	}
 
 	chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
@@ -20,16 +51,26 @@
 	    });
 	});
 
-	$(window).load(function() {
+	function load() {
 	    chrome.storage.sync.get(null, function(answer) {
 	    	$.extend( true, defaults, answer );
 
 	    	init();
 	    });
+	}
+
+	$(window).load(load);
+	$(document).ready(load);
+
+	$(window).resize(function(){
+		if($('.grid_builder').length) {
+			deleteGrid();
+			buildGrid();
+		}
 	});
 
 	function init() {
-		if(defaults.disabled) {
+		if(parseInt(defaults.disabled)) {
 			$('#grid_builder_toggle_button').remove();
 			$('.grid_builder').remove();
 			return;
@@ -37,7 +78,7 @@
 
 		var btn = $('#grid_builder_toggle_button');
 		if(!btn.length) {
-			$('body').append('<div id="grid_builder_toggle_button"></div>');
+			$('body').append('<div id="grid_builder_toggle_button">ON</div>');
 			$('#grid_builder_toggle_button').click(function(){
 				if($(this).data('open')) {
 					deleteGrid();
@@ -57,27 +98,54 @@
 
 	function deleteGrid() {
 		$('.grid_builder').remove();
+		$('#grid_builder_toggle_button').html('ON');
+		$('#grid_builder_toggle_button').removeClass('off');
 	}
 
 	function buildGrid() {
 		if(!$('#grid_builder_toggle_button')) return;
+		$('#grid_builder_toggle_button').html('OFF');
+		$('#grid_builder_toggle_button').addClass('off');
 
-		var hor = parseInt(($('body').height() - defaults.topMargin) / defaults.lineHeight);
+		var width, colWidth, hor, item;
+		if(parseInt(defaults.usemanual)) {
+			item = defaults['manual'];
+		} else {
+			for(var sizing in defaults) {
+				item = defaults[sizing];
+				if(item.pageWidth + item.gutter < $('body').width()) break;
+			}
+		}
+		hor = parseInt(($('html').height() - item.topMargin) / item.lineHeight);
+		var lineHeight = item.lineHeight;
+		var topMargin = item.topMargin;
+		var columns = item.columns;
+		var gutter = item.gutter;
+		width = parseInt(item.pageWidth) > 0 ? parseInt(item.pageWidth) : $('body').width() - item.gutter;
+		colWidth = (width - (item.gutter * (item.columns - 1))) / item.columns;
+
+		/*
+		var hor = parseInt(($('html').height() - defaults.topMargin) / defaults.lineHeight);
+		*/
 		for(var i = 0; i < hor; i++) {
 			$('body').append(
-				'<div class="grid_builder grid_horizontal" style="top: ' + (i * defaults.lineHeight + defaults.topMargin)  + 'px;"></div>');
+				'<div class="grid_builder grid_horizontal" style="top: ' + (i * lineHeight + topMargin)  + 'px;"></div>'
+			);
 		}
-		var width = parseInt(defaults.pageWidth) > 0 ? parseInt(defaults.pageWidth) : $('body').width();
-		var colWidth = parseInt((width - (defaults.gutter * (defaults.columns - 1))) / defaults.columns);
+
+		/*
+		var width = parseInt(defaults.pageWidth) > 0 ? parseInt(defaults.pageWidth) : $('body').width() - defaults.gutter;
+		var colWidth = (width - (defaults.gutter * (defaults.columns - 1))) / defaults.columns;
+		*/
 		var left = parseInt(($('body').width() - width) / 2);
-		$('body').append('<div class="grid_builder grid_vertical first" style="left: ' + left  + 'px;"></div>');
-		left += colWidth; 
-		$('body').append('<div class="grid_builder grid_vertical" style="left: ' + left  + 'px;"></div>');
-		for(var i = 1; i < defaults.columns; i++) {
-			left += defaults.gutter;
-			$('body').append('<div class="grid_builder grid_vertical" style="left: ' + left  + 'px;"></div>');
-			left += colWidth; 
-			$('body').append('<div class="grid_builder grid_vertical" style="left: ' + left  + 'px;"></div>');
+		$('body').append('<div class="grid_builder grid_vertical first" style="left: ' + parseInt(left)  + 'px;"></div>');
+		left += colWidth;
+		$('body').append('<div class="grid_builder grid_vertical" style="left: ' + parseInt(left)  + 'px;"></div>');
+		for(var i = 1; i < columns; i++) {
+			left += gutter;
+			$('body').append('<div class="grid_builder grid_vertical" style="left: ' + parseInt(left)  + 'px;"></div>');
+			left += colWidth;
+			$('body').append('<div class="grid_builder grid_vertical" style="left: ' + parseInt(left)  + 'px;"></div>');
 		}
 	}
 }(jQuery));

@@ -1,24 +1,38 @@
+@import "variables";
+
 * {
 	box-sizing: border-box;
 }
 
 body {
-	padding: 12px 12px 3px 12px;
+	padding: 0;
 	margin: 0;
-	width: 252px;
-	font-family: sans-serif;
+	width: 232px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
 	font-size: 75%;
 	color: #888;
+	text-rendering: optimizeLegibility;
+	border: 2px solid $main;
 }
 
 h1 {
-	font-size: 2em;
-	font-weight: normal;
-	color: #444;
-	text-align: left;
+	font: {
+		size: 2.25em;
+		weight: 300;
+	}
+	letter-spacing: 1px;
+	line-height: 1.8;
+	color: #eee;
+	text-align: center;
+	background-color: $main;
 	display: block;
 	padding: 0;
 	margin: 0;
+}
+
+.container {
+	padding: 6px 4px 0;
 }
 
 label {
@@ -28,70 +42,126 @@ label {
 	margin: 6px 0;
 	overflow: hidden;
 
+	/*
 	span {
 		float: left;
 		display: inline-block;
 		font-weight: bold;
 		margin-right: 0;
 		padding-top: 4px;
-		width: 144px;
+		width: 136px;
 	}
+	*/
+}
 
-	input, select {
+input {
+	width: 66px;
+	padding: 4px 8px;
+	border: 1px solid #ddd;
+	box-shadow: none;
+}
+
+.clear {
+	clear: both;
+}
+
+.sep {
+	height: 6px;
+	width: 100%;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 6px;
+}
+
+.bsdef, .btn-container {
+	span {
+		display: inline-block;
 		float: left;
-		width: 84px;
-		padding: 4px 8px;
-		border: 1px solid #ddd;
-		box-shadow: none;
+		font-size: normal;
+		line-height: 21px;
+		margin-left: 6px;
+
+		&.onoff_cap {
+			color: #fff;
+		}
+	}
+	.manualswitch, .onoffswitch {
+		float: left;
+		margin: 0;
+	}
+}
+
+.man_table { display: none; }
+
+table {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	width: 100%;
+
+	th {
+		width: 99%;
+	}
+}
+
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 36px;
+	height: 21px;
+	margin: 2px 0 0 2px;
+	border-radius: 99em;
+	cursor: pointer;
+	box-shadow: inset 0 0 3px #333;
+	background-color: $switchoff;
+	transition: background-color .1s;
+	overflow: hidden;
+	
+	.btn {
+		position: absolute;
+		left: 0;
+		top: 2px;
+		margin-left: 2px;
+		width: 17px;
+		height: 17px;
+		border-radius: 50%;
+		background-color: white;
+		box-shadow: 0 0 3px white;
+		transition: margin-left .1s;
 	}
 
-	select {
-		width: 228px;
-		margin-bottom: 12px;
+	&.enabled {
+		background-color: $switchon;
+
+		.btn {
+			margin-left: 17px;
+		}
 	}
 }
 
 .btn-container {
 	display: inline-block;
 	float: left;
-	margin: 9px 0;
+	margin: 9px 0 0;
 	width: 50%;
 	text-align: left;
-	padding-top: 6px;
+	padding: 12px 2px 0;
+	min-height: 48px;
+	background-color: $main;
 
-	&.right { text-align: right; padding-top: 0; }
-
+	&.right { text-align: right; padding-top: 9px; }
+	
 	button {
 		display: inline-block;
 		min-width: 84px;
 		text-align: center;
-		font-weight: bold;
+		letter-spacing: 1px;
 		padding: 6px;
 		border-radius: 4px;
-		background-color: #2693FF;
-		color: #fcfcfc;
+		background-color: #f9f9f9;
+		color: $main;
 		border: none;
 		outline: none;
 		box-shadow: none;
 		cursor: pointer;
-
-		&.disable, &.enable {
-			font-weight: normal;
-			font-size: 75%;
-			min-width: 36px;
-			opacity: .3;
-
-			&.selected { opacity: 1; }
-		}
-
-		&.disable {
-			border-radius: 4px 0 0 4px;;
-			background-color: orange;
-			border-right: 1px solid #ccc;
-		}
-		&.enable {
-			border-radius: 0 4px 4px 0;
-			background-color: green;
-		}
 	}
 }

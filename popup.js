@@ -2,61 +2,123 @@
 	"use strict";
 
 	var defaults = {
-		defaults	: 'bs_lg',
-		pageWidth	: 1170,
-		columns		: 12,
-		gutter		: 30,
-		topMargin	: 0,
-		lineHeight	: 24,
-		disabled	: 0
-	}
-
-	var predefined = {
 		'bs_lg' : {
-			pageWidth	: 1170,
+			pageWidth	: 1140,
 			columns		: 12,
-			gutter		: 30
+			gutter		: 30,
+			topMargin	: 0,
+			lineHeight	: 24
 		},
 		'bs_md' : {
-			pageWidth	: 970,
+			pageWidth	: 940,
 			columns		: 12,
-			gutter		: 30
+			gutter		: 30,
+			topMargin	: 0,
+			lineHeight	: 24
 		},
 		'bs_sm' : {
-			pageWidth	: 750,
+			pageWidth	: 720,
 			columns		: 12,
-			gutter		: 30
+			gutter		: 30,
+			topMargin	: 0,
+			lineHeight	: 24
 		},
 		'bs_xs' : {
 			pageWidth	: 0,
 			columns		: 12,
-			gutter		: 30
-		}
+			gutter		: 30,
+			topMargin	: 0,
+			lineHeight	: 24
+		},
+		'manual': {
+			pageWidth	: 1140,
+			columns		: 12,
+			gutter		: 30,
+			topMargin	: 0,
+			lineHeight	: 24
+		},
+		'disabled'	: 0,
+		'usemanual'	: 0
 	}
 
     chrome.storage.sync.get(null, function(answer) {
-    	$.extend(true, defaults, answer);
-		iconSet(defaults.disabled);
-		
-		chrome.browserAction.setIcon({
-            path: defaults.disabled > 0 ? 'icon-disabled-16.png' : 'icon16.png'
-        });
+		try {
+			chrome.browserAction.setIcon({
+	            path: answer.disabled > 0 ? 'icon-disabled.png' : 'icon.png'
+	        });
+		} catch(e) {
+			chrome.browserAction.setIcon({
+	            path: 'icon-disabled.png'
+	        });
+		}
     });
 
 	$(window).load(function () {
+	    chrome.storage.sync.get(null, function(answer) {
+	    	$.extend(true, defaults, answer);
+			$('.onoffswitch').click(function() {
+				var disabled = $(this).hasClass('enabled') ? 1 : 0;
+				$("#disabled").val(disabled);
+				iconSet(disabled);
+			});
+
+			$('.manualswitch').click(function() {
+				var manual = $(this).hasClass('enabled') ? 1 : 0;
+				$("#manual").val(manual);
+				manualSet(manual);
+			});
+
+			$("#page_width").val(defaults.manual.pageWidth);
+			$("#columns").val(defaults.manual.columns);
+			$("#gutter").val(defaults.manual.gutter);
+			$("#top_margin").val(defaults.manual.topMargin);
+			$("#line_height").val(defaults.manual.lineHeight);
+			$("#lg_top_margin").val(defaults.bs_lg.topMargin);
+			$("#lg_line_height").val(defaults.bs_lg.lineHeight);
+			$("#md_top_margin").val(defaults.bs_md.topMargin);
+			$("#md_line_height").val(defaults.bs_md.lineHeight);
+			$("#sm_top_margin").val(defaults.bs_sm.topMargin);
+			$("#sm_line_height").val(defaults.bs_sm.lineHeight);
+			$("#xs_top_margin").val(defaults.bs_xs.topMargin);
+			$("#xs_line_height").val(defaults.bs_xs.lineHeight);
+			$("#disabled").val(defaults.disabled);
+			$("#manual").val(defaults.usemanual);
+
+			iconSet(parseInt(defaults.disabled));
+			manualSet(parseInt(defaults.usemanual));
+	    });
+
 	    $("#submit").click(function() {
 			chrome.browserAction.setIcon({
-	            path: parseInt($("#disabled").val()) > 0 ? 'icon-disabled-16.png' : 'icon16.png'
+	            path: parseInt($("#disabled").val()) > 0 ? 'icon-disabled.png' : 'icon.png'
 	        });
 
 			chrome.storage.sync.set({
-				defaults	: document.getElementById("defaults").value,
-				pageWidth	: parseInt(document.getElementById("page_width").value),
-				columns		: parseInt(document.getElementById("columns").value),
-				gutter		: parseInt(document.getElementById("gutter").value),
-				topMargin	: parseInt(document.getElementById("top_margin").value),
-				lineHeight	: parseInt(document.getElementById("line_height").value),
-				disabled	: parseInt(document.getElementById("disabled").value)
+				disabled	: $("#disabled").val(),
+				usemanual	: $("#manual").val(),
+				manual 		: {
+					pageWidth	: parseInt($("#page_width").val()),
+					columns		: parseInt($("#columns").val()),
+					gutter		: parseInt($("#gutter").val()),
+					topMargin	: parseInt($("#top_margin").val()),
+					lineHeight	: parseInt($("#line_height").val())
+				},
+				bs_lg 		: {
+					topMargin	: parseInt($("#lg_top_margin").val()),
+					lineHeight	: parseInt($("#lg_line_height").val())
+				},
+				bs_md 		: {
+					topMargin	: parseInt($("#md_top_margin").val()),
+					lineHeight	: parseInt($("#md_line_height").val())
+				},
+				bs_sm 		: {
+					topMargin	: parseInt($("#sm_top_margin").val()),
+					lineHeight	: parseInt($("#sm_line_height").val())
+				},
+				bs_xs 		: {
+					topMargin	: parseInt($("#xs_top_margin").val()),
+					lineHeight	: parseInt($("#xs_line_height").val())
+				}
 			}, function() {
 				chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 					chrome.tabs.sendMessage(tabs[0].id, {identifier: 'grid_builder_refresh'});
@@ -65,44 +127,25 @@
 				});
 			});
 	    });
-
-		$("#defaults").val(defaults.defaults);
-		$("#page_width").val(defaults.pageWidth);
-		$("#columns").val(defaults.columns);
-		$("#gutter").val(defaults.gutter);
-		$("#top_margin").val(defaults.topMargin);
-		$("#line_height").val(defaults.lineHeight);
-		$("#disabled").val(defaults.disabled);
-
-		$('.disable, .enable').click(function() {
-			var disabled = $(this).hasClass('disable') ? 1 : 0;
-			$("#disabled").val(disabled);
-			iconSet(disabled);
-		});
-
-		$("#page_width, #columns, #gutter").blur(function(){
-			if(!$('#defaults').val()) return;
-
-			if(
-				$("#page_width").val() != predefined[$('#defaults').val()].pageWidth ||
-				$("#columns").val() != predefined[$('#defaults').val()].columns ||
-				$("#gutter").val() != predefined[$('#defaults').val()].gutter
-			) {
-				$('#defaults').val('');
-			}
-		});
-
-	    $('#defaults').change(function() {
-	    	if(!$(this).val()) return;
-
-			$("#page_width").val(predefined[$(this).val()].pageWidth);
-			$("#columns").val(predefined[$(this).val()].columns);
-			$("#gutter").val(predefined[$(this).val()].gutter);
-	    });
 	});
 
 	function iconSet(disabled) {
-		$('.disable').addClass(disabled ? 'selected' : '').removeClass(disabled ? '' : 'selected');
-		$('.enable').addClass(!disabled ? 'selected' : '').removeClass(!disabled ? '' : 'selected');
+		$('.onoffswitch').addClass(disabled ? '' : 'enabled').removeClass(disabled ? 'enabled' : '');
+
+		$('.onoff_cap').html(disabled ? 'OFF' : 'ON');
+	}
+
+	function manualSet(manual) {
+		$('.manualswitch').addClass(manual ? '' : 'enabled').removeClass(manual ? 'enabled' : '');
+
+		if(manual) {
+			$('.bsdef_table').fadeOut(0);
+			$('.man_table').fadeIn(0);
+		} else {
+			$('.man_table').fadeOut(0);
+			$('.bsdef_table').fadeIn(0);
+		}
+
+		$('.manual_cap').html(manual ? 'Use Manual Settings' : 'Use Bootstrap Defaults');
 	}
 }(jQuery));
