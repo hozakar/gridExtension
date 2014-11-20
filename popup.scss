@@ -14,6 +14,11 @@ body {
 	color: #888;
 	text-rendering: optimizeLegibility;
 	border: 2px solid $main;
+	transition: border-color .2s;
+
+	&.greyed {
+		border-color: $greyed;
+	}
 }
 
 h1 {
@@ -29,6 +34,11 @@ h1 {
 	display: block;
 	padding: 0;
 	margin: 0;
+	transition: background-color .2s;
+
+	&.greyed {
+		background-color: $greyed;
+	}
 }
 
 .container {
@@ -72,7 +82,7 @@ input {
 	margin-bottom: 6px;
 }
 
-.bsdef, .btn-container {
+.bsdef {
 	span {
 		display: inline-block;
 		float: left;
@@ -84,7 +94,7 @@ input {
 			color: #fff;
 		}
 	}
-	.manualswitch, .onoffswitch {
+	.manualswitch {
 		float: left;
 		margin: 0;
 	}
@@ -100,6 +110,8 @@ table {
 
 	th {
 		width: 99%;
+		text-align: left;
+		font-weight: normal;
 	}
 }
 
@@ -132,6 +144,10 @@ table {
 	&.enabled {
 		background-color: $switchon;
 
+		&.greyed {
+			background-color: $switchon-greyed;
+		}
+
 		.btn {
 			margin-left: 17px;
 		}
@@ -147,15 +163,33 @@ table {
 	padding: 12px 2px 0;
 	min-height: 48px;
 	background-color: $main;
+	transition: background-color .2s;
+
+	&.greyed {
+		background-color: $greyed;
+	}
 
 	&.right { text-align: right; padding-top: 9px; }
 	
+	span {
+		display: inline-block;
+		float: left;
+		font-size: normal;
+		line-height: 21px;
+		margin: 2px 0 0 6px;
+		color: #fff;
+	}
+
+	.onoffswitch {
+		float: left;
+	}
+
 	button {
 		display: inline-block;
 		min-width: 84px;
 		text-align: center;
-		letter-spacing: 1px;
 		padding: 6px;
+		margin: 3px 5px 0 0;
 		border-radius: 4px;
 		background-color: #f9f9f9;
 		color: $main;
@@ -163,5 +197,10 @@ table {
 		outline: none;
 		box-shadow: none;
 		cursor: pointer;
+		transition: color .2s;
+
+		&.greyed {
+			color: $greyed;
+		}
 	}
 }

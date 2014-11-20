@@ -116,7 +116,12 @@
 				if(item.pageWidth + item.gutter < $('body').width()) break;
 			}
 		}
-		hor = parseInt(($('html').height() - item.topMargin) / item.lineHeight);
+		var totalHeight = $('html').height();
+		$('*').each(function(){
+			totalHeight = Math.max(totalHeight, $(this).offset().top + $(this).outerHeight());
+		});
+
+		hor = parseInt((totalHeight - item.topMargin) / item.lineHeight);
 		var lineHeight = item.lineHeight;
 		var topMargin = item.topMargin;
 		var columns = item.columns;
@@ -124,19 +129,12 @@
 		width = parseInt(item.pageWidth) > 0 ? parseInt(item.pageWidth) : $('body').width() - item.gutter;
 		colWidth = (width - (item.gutter * (item.columns - 1))) / item.columns;
 
-		/*
-		var hor = parseInt(($('html').height() - defaults.topMargin) / defaults.lineHeight);
-		*/
 		for(var i = 0; i < hor; i++) {
 			$('body').append(
 				'<div class="grid_builder grid_horizontal" style="top: ' + (i * lineHeight + topMargin)  + 'px;"></div>'
 			);
 		}
 
-		/*
-		var width = parseInt(defaults.pageWidth) > 0 ? parseInt(defaults.pageWidth) : $('body').width() - defaults.gutter;
-		var colWidth = (width - (defaults.gutter * (defaults.columns - 1))) / defaults.columns;
-		*/
 		var left = parseInt(($('body').width() - width) / 2);
 		$('body').append('<div class="grid_builder grid_vertical first" style="left: ' + parseInt(left)  + 'px;"></div>');
 		left += colWidth;

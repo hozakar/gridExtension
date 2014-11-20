@@ -87,6 +87,14 @@
 			iconSet(parseInt(defaults.disabled));
 			manualSet(parseInt(defaults.usemanual));
 	    });
+		
+		$('input').keypress(function(e) {
+			e = e || event;
+			if(e.keyCode == 13) {
+				e.preventDefault();
+				$("#submit").trigger('click');
+			}
+		});
 
 	    $("#submit").click(function() {
 			chrome.browserAction.setIcon({
@@ -133,6 +141,8 @@
 		$('.onoffswitch').addClass(disabled ? '' : 'enabled').removeClass(disabled ? 'enabled' : '');
 
 		$('.onoff_cap').html(disabled ? 'OFF' : 'ON');
+
+		$('body, h1, .btn-container, .btn-container button, .switch').addClass(disabled ? 'greyed' : '').removeClass(disabled ? '' : 'greyed');
 	}
 
 	function manualSet(manual) {
