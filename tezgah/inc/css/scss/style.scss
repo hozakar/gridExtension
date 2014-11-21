@@ -1,0 +1,95 @@
+@import "variables";
+
+/* Main settings */
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 100%;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	font: {
+		family: 'Roboto', sans-serif;
+		size: 1rem;
+	}
+	text-rendering: optimizeLegibility;
+	line-height: 1.5rem;
+}
+
+ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+h1, h2, h3, h4 {
+	padding: 0;
+	margin: 0;
+}
+
+/**
+ * HEADER SECTION
+ */
+.header {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	min-height: 20rem;
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-image: url(../images/header-bg.png);
+
+	.social-bar {
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+		background-color: #fcfcfc;
+
+		ul {
+			display: block;
+
+			li {
+				float: left;
+				padding-right: 1.5rem;
+				font-size: 2rem;
+
+				a {
+					line-height: 4rem;
+
+					.fa {
+						color: #cccccc;
+						transition: all .5s;
+					}
+				}
+
+				&:hover {
+					a {
+						text-shadow: 0 0 .5rem #cccccc;
+
+						.fa-facebook {
+							color: #3C599B;
+						}
+						.fa-twitter {
+							color: #29AAE3;
+						}
+						.fa-google-plus {
+							color: #D6492F;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.scroll-point-fixer {
+	position: relative;
+	height: 0;
+	border-bottom: 1px solid #aaaaaa;
+	margin-top: 20rem;
+}

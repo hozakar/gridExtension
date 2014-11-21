@@ -1,0 +1,100 @@
+/* Main settings */
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  text-rendering: optimizeLegibility;
+  line-height: 1.5rem;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  padding: 0;
+  margin: 0;
+}
+
+/**
+ * HEADER SECTION
+ */
+
+.header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  min-height: 20rem;
+  background-position: center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../images/header-bg.png);
+}
+
+.header .social-bar {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background-color: #fcfcfc;
+}
+
+.header .social-bar ul {
+  display: block;
+}
+
+.header .social-bar ul li {
+  float: left;
+  padding-right: 1.5rem;
+  font-size: 2rem;
+}
+
+.header .social-bar ul li a {
+  line-height: 4rem;
+}
+
+.header .social-bar ul li a .fa {
+  color: #cccccc;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.header .social-bar ul li:hover a {
+  text-shadow: 0 0 .5rem #cccccc;
+}
+
+.header .social-bar ul li:hover a .fa-facebook {
+  color: #3C599B;
+}
+
+.header .social-bar ul li:hover a .fa-twitter {
+  color: #29AAE3;
+}
+
+.header .social-bar ul li:hover a .fa-google-plus {
+  color: #D6492F;
+}
+
+.scroll-point-fixer {
+  position: relative;
+  height: 0;
+  border-bottom: 1px solid #aaaaaa;
+  margin-top: 20rem;
+}
