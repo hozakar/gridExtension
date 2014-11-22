@@ -37,10 +37,13 @@
 		<link href="inc/css/font-awesome.min.css" rel="stylesheet">
 
         <!-- Fonts -->
-        <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css' />
+        <link href='http://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css' />
 
-		<!-- Custom Stylesheets -->
-		<link href="inc/css/style.css" rel="stylesheet">
+        <!-- Text Flip -->
+        <link href="inc/css/textflip.css" rel="stylesheet">
+
+        <!-- Custom Stylesheets -->
+        <link href="inc/css/style.css" rel="stylesheet">
 
 		<!-- IE8 Support -->
 		<!--[if lt IE 9]>
@@ -58,7 +61,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-                        *
+                        <div class="logo">
+                            Grid Builder
+                        </div>
+                        <div class="chrome-screen">
+                            <img src="inc/images/chrome-screen.png" alt="Screen">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -68,10 +76,14 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+                            <div class="bar">
+                                <img src="inc/images/icon48.png" alt="Grid Builder" />
+                                <span class="gbuilder">GRID BUILDER</span>
+                            </div>
                             <ul>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="face"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li class="gplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
                             </ul>
                             <div class="clearfix"></div>
                         </div>
@@ -86,38 +98,61 @@
         <article>
             <header class="container">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg offset-3">
-                        <h1>*</h1>
-                        <p>*</p>
+                    <div class="col-xs-12 col-md-8 col-md-offset-1 col-lg-6 col-lg-offset-2">
+                        <h1>GRID BUILDER</h1>
+                        <p>
+                            Grid Builder is  a tool built for front-end developers to inspect, examine and perfect their designs or any web site in action.
+                        </p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg offset-3">
-                        <a href="#" class="download-btn">DOWNLOAD</a>
+                    <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+                        <a href="#" class="download-btn">
+                            DOWNLOAD
+                        </a>
                     </div>
                 </div>
             </header>
 
-            <div class="seperator"></div>
-            
             <!-- Triple Layer Description -->
-            <div class="container">
+            <div class="container detailed-info">
                 <div class="row">
-                    <div class="col-xs-12">
-                        <figure>*</figure>
-                        <section>*</section>
+                    <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+                        <figure class="bsdef">
+                            <img src="inc/images/bsdef.png" alt="Bootstrap Default Settings Mode">
+                        </figure>
+                        <section class="bsdef">
+                            <h2>Bootstrap Default Mode</h2>
+                            <p>
+                                When set to <strong>"Use Bootstrap Defaults"</strong>, Grid Builder tracks the window width and adapts to Bootstraps default grid sizing.
+                            </p>
+                        </section>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12">
-                        <figure>*</figure>
-                        <section>*</section>
+                    <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+                        <figure class="manual">
+                            <img src="inc/images/manual.png" alt="Manual Settings Mode">
+                        </figure>
+                        <section class="manual">
+                            <h2>Manual Settings</h2>
+                            <p>
+                                When set to <strong>"Use Manual Settings"</strong>, Grid Builder does not track the window width. Instead it sticks with the given settings whatever the window width is.
+                            </p>
+                        </section>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12">
-                        <figure>*</figure>
-                        <section>*</section>
+                    <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+                        <figure class="off">
+                            <img src="inc/images/disabled.png" alt="Disabled Mode">
+                        </figure>
+                        <section class="off">
+                            <h2>Disable If Not Needed</h2>
+                            <p>
+                                When you're done with analyzing a page, Grid Builder can be disabled fully so that the upper right ON-OFF button would disappear.
+                            </p>
+                        </section>
                     </div>
                 </div>
             </div>
@@ -125,8 +160,8 @@
             <footer>
                 <div class="container">
                     <div class="row">
-                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 pull-right">
-                            <a href="#" class="download-btn">DOWNLOAD</a>
+                        <div class="col-xs-12 col-md-11 col-lg-9 text-right">
+                            <a href="#" class="download-btn btm">DOWNLOAD</a>
                         </div>
                     </div>
                 </div>
@@ -136,36 +171,36 @@
         <div class="clearfix"></div>
         
         <!-- Footer -->
-        <!--
-            Footer must be two columns
-            One for social sharing icons
-            One for github link & copy & licence & stuff
-        -->
         <div class="footer">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-6">
-                        <ul>
-                            <li>*</li>
-                            <li>*</li>
-                            <li>*</li>
-                        </ul>
+                        <a href="https://github.com/hozakar/gridExtension" class="github" target="_blank">
+                            <i class="fa fa-github"></i>
+                            Wanna take a look at the code?
+                        </a>
+                        <div class="clearfix"></div>
+                        <a href="http://beltslib.net/" class="bbelt"><img src="inc/images/bbelt.png" alt="BeltsLib" />BELTSLIB.NET</a>
                     </div>
                     <div class="col-xs-12 col-sm-6">
-                        <ul>
-                            <li>*</li>
-                            <li>*</li>
-                            <li>*</li>
-                        </ul>
+                        <h4>
+                            If you liked it why not share?
+                        </h4>
+                        <p>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-
+        
         <!-- JavaScript Files -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script src="inc/js/bootstrap.min.js"></script>
-		<script src="inc/js/sscr.js"></script>
+        <script src="inc/js/textflip.min.js"></script>
+        <script src="inc/js/sscr.js"></script>
 		<!-- Custom Scripts -->
 		<script src="inc/js/general.min.js"></script>
 	</body>

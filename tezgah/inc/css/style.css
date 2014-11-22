@@ -1,8 +1,5 @@
 /* Main settings */
-
 * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -15,8 +12,11 @@ body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
+  font-weight: 300;
   text-rendering: optimizeLegibility;
   line-height: 1.5rem;
+  color: #aaaaaa;
+  min-width: 750px;
 }
 
 ul {
@@ -25,76 +25,301 @@ ul {
   list-style: none;
 }
 
-h1,
-h2,
-h3,
-h4 {
+h1, h2, h3, h4 {
   padding: 0;
   margin: 0;
+  font-weight: 300;
+  letter-spacing: .05em;
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: 4.5rem;
+  padding: .75rem 0;
+  color: #30b3bf;
+}
+
+h2 {
+  font-size: 2rem;
+  line-height: 3rem;
+  color: #30b3bf;
+}
+
+@media (max-width: 991px) {
+  h2 {
+    font-size: 1.75rem;
+  }
+}
+p {
+  padding: .75rem 0;
+  margin: 0;
+}
+
+strong {
+  font-weight: 400;
 }
 
 /**
  * HEADER SECTION
  */
-
 .header {
   position: absolute;
   top: 0;
   width: 100%;
-  min-height: 20rem;
+  min-height: 39rem;
   background-position: center center;
-  -webkit-background-size: cover;
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url(../images/header-bg.png);
 }
-
+.header .container, .header .row, .header .col-xs-12 {
+  height: 100%;
+}
 .header .social-bar {
   position: absolute;
   width: 100%;
   bottom: 0;
   background-color: #fcfcfc;
 }
-
 .header .social-bar ul {
   display: block;
 }
-
 .header .social-bar ul li {
   float: left;
   padding-right: 1.5rem;
   font-size: 2rem;
+  transition: all 1s;
 }
-
 .header .social-bar ul li a {
-  line-height: 4rem;
+  line-height: 4.5rem;
 }
-
 .header .social-bar ul li a .fa {
   color: #cccccc;
-  -webkit-transition: all .5s;
   transition: all .5s;
 }
-
 .header .social-bar ul li:hover a {
-  text-shadow: 0 0 .5rem #cccccc;
+  text-shadow: 0 0 0.5rem #cccccc;
 }
-
 .header .social-bar ul li:hover a .fa-facebook {
-  color: #3C599B;
+  color: #3c599b;
 }
-
 .header .social-bar ul li:hover a .fa-twitter {
-  color: #29AAE3;
+  color: #29aae3;
 }
-
 .header .social-bar ul li:hover a .fa-google-plus {
-  color: #D6492F;
+  color: #d6492f;
+}
+.header .social-bar .bar {
+  display: none;
+  position: relative;
+  float: left;
+  font-size: 2rem;
+  line-height: 4.5rem;
+  letter-spacing: .05em;
+}
+.header .social-bar .bar img {
+  margin-top: -.5rem;
+}
+.header .social-bar .bar .gbuilder {
+  opacity: 0;
+}
+.header.fixed {
+  position: fixed;
+  z-index: 99;
+}
+.header.fixed .social-bar {
+  box-shadow: 0 1px 0.5rem rgba(204, 204, 204, 0.5);
+}
+.header .logo {
+  display: block;
+  position: absolute;
+  bottom: 30rem;
+  height: 4.5rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url(../images/icon128.png);
+  padding-left: 4.75rem;
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: .05em;
+  line-height: 4.25rem;
+  overflow: hidden;
+  color: #aaaaaa;
+  text-shadow: 1px 1px 1px #cccccc;
+  text-transform: uppercase;
+}
+.header .chrome-screen {
+  position: absolute;
+  bottom: 4.5rem;
+  left: 0;
+  right: 0;
+}
+.header .chrome-screen img {
+  width: 100%;
 }
 
 .scroll-point-fixer {
   position: relative;
   height: 0;
-  border-bottom: 1px solid #aaaaaa;
-  margin-top: 20rem;
+  border-bottom: 1px solid #efefef;
+  margin-top: 39rem;
+}
+
+/*
+ * ARTICLE
+ */
+article {
+  margin: 2.25rem 0;
+}
+article .download-btn {
+  display: inline-block;
+  border-radius: .5rem;
+  padding: 0 .75rem 0 4rem;
+  margin: .75rem 0;
+  line-height: 3rem;
+  font-size: 1.25rem;
+  background-color: #30b3bf;
+  color: #fcfcfc;
+  text-decoration: none;
+  transition: background-color .2s, color .2s;
+}
+article .download-btn:hover {
+  background-color: transparent;
+  color: #30b3bf;
+  box-shadow: 0 0 3px #30b3bf;
+}
+article .download-btn:before {
+  font-family: 'FontAwesome';
+  content: '\f0ed';
+  position: absolute;
+  margin-left: -3rem;
+  margin-top: .0625rem;
+  font-size: 2.25rem;
+  text-shadow: 0 0 1px #555555;
+  color: #fcfcfc;
+}
+article .detailed-info {
+  position: relative;
+  padding-top: 6rem;
+}
+article .detailed-info figure {
+  position: absolute;
+  margin-left: -2rem;
+  transition: padding-top .4s, opacity .4s, margin-top .4s;
+  opacity: 0;
+}
+article .detailed-info figure.bsdef {
+  top: 0;
+  padding-top: 6rem;
+  opacity: 0;
+  z-index: 3;
+  transition: padding-top .4s ease-out, opacity .4s, margin-top .4s;
+}
+article .detailed-info figure.manual {
+  padding-top: 15rem;
+  z-index: 2;
+  transition: padding-top .4s .05s ease-out, opacity .4s, margin-top .4s;
+}
+article .detailed-info figure.off {
+  padding-top: 21rem;
+  z-index: 1;
+  transition: padding-top .4s .1s ease-out, opacity .4s, margin-top .4s;
+}
+article .detailed-info figure.fixed {
+  position: fixed;
+}
+article .detailed-info figure.inscr {
+  opacity: 1;
+  padding-top: 0;
+}
+article .detailed-info figure.transparent {
+  opacity: 0;
+  margin-top: -3rem;
+}
+article .detailed-info section {
+  position: relative;
+  z-index: 4;
+}
+article .detailed-info section.bsdef {
+  padding: 1.5rem 0 7.5rem 23rem;
+}
+article .detailed-info section.manual {
+  padding: 6rem 0 4.5rem 23rem;
+}
+article .detailed-info section.off {
+  padding: 9rem 0 15rem 23rem;
+}
+article .detailed-info section p {
+  padding-left: 4rem;
+  margin-top: 1.5rem;
+}
+article footer {
+  padding-bottom: 13.5rem;
+}
+
+/*
+ * FOOTER
+ */
+.footer {
+  background-color: #101010;
+  position: relative;
+  color: #fcfcfc;
+  padding: 1.5rem 0 .75rem;
+}
+.footer .github {
+  display: block;
+  font-size: 1rem;
+  line-height: 3rem;
+  color: #fcfcfc;
+  text-decoration: none;
+}
+.footer .github i {
+  float: left;
+  margin-right: .75rem;
+  font-size: 2rem;
+  line-height: 3rem;
+  color: #fcfcfc;
+  transition: color .4s;
+}
+.footer .github:hover i {
+  color: #30b3bf;
+}
+.footer .bbelt {
+  display: block;
+  color: #fcfcfc;
+  text-decoration: none;
+  font-size: .8rem;
+  transition: color .4s;
+}
+.footer .bbelt img {
+  float: left;
+  margin: 0 .9rem 0 .1rem;
+}
+.footer .bbelt:hover {
+  color: #30b3bf;
+}
+.footer h4 {
+  font-size: 1rem;
+  line-height: 3rem;
+  color: #fcfcfc;
+}
+.footer p {
+  margin-top: -.75rem;
+}
+.footer p i {
+  display: inline-block;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  color: #fcfcfc;
+  transition: color .4s;
+}
+.footer p i:hover.fa-facebook {
+  color: #3c599b;
+}
+.footer p i:hover.fa-twitter {
+  color: #29aae3;
+}
+.footer p i:hover.fa-google-plus {
+  color: #d6492f;
 }

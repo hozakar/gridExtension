@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 
 	"name": "Grid Builder",
-	"description": "This extension applies a grid to current web page.",
+	"description": "Grid Builder extension applies a grid to current web page.",
 	"version": "1.0",
 
 	"browser_action": {
