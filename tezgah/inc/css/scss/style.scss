@@ -41,6 +41,16 @@ h1 {
 	line-height: 4.5rem;
 	padding: .75rem 0;
 	color: $main;
+
+	small {
+		display: block;
+		font-weight: 300;
+		font-size: 1.5rem;
+		padding: 0;
+		line-height: 1.4rem;
+		letter-spacing: .05em;
+		font-variant: small-caps;
+	}
 }
 
 h2 {

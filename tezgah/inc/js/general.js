@@ -10,7 +10,6 @@
 
 	$(window).load(function() {
 		$(window).trigger('resize');
-		$(window).trigger('scroll');
 	});
 
 	$(window).resize(function() {
@@ -27,6 +26,8 @@
 		var diff = Math.max(0, $(window).height() - 694);
 		diff = Math.ceil(diff / (rem * 1.5)) * rem * 1.5;
 		$('.footer').css('margin-top', diff);
+
+		$(window).trigger('scroll');
 	});
 
 	$(window).scroll(function() {
